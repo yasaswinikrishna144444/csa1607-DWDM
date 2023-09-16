@@ -1,0 +1,247 @@
+1.
+code:
+@relation exp1
+@attribute customerid numeric
+@attribute gender{male,female}
+@attribute age numeric
+@attribute annual_income numeric
+@attribute spending_score numeric
+@data
+1,male,19,15,39
+2,male,21,15,81
+3,female,20,16,6
+4,female,23,16,77
+5,female,31,17,40
+output:
+ 
+2.
+input:
+@relation exp1
+@attribute emp_id numeric
+@attribute gender{male,female}
+@attribute age numeric
+@attribute salary numeric
+@attribute credit numeric
+@data
+111,male,28,1500000,39
+222,male,25,1500000,27
+333,female,26,1600000,42
+444,female,25,1600000,40
+555,female,30,1700000,64
+666,male,29,2000000,72
+output:
+ 
+ 
+3.
+input:
+output:
+ 
+ 
+4.
+input:
+@relation exp1
+@attribute person{gopu,babu,baby,gopal,krishna,jai,dev,malini,hema,anu}
+@attribute gender{yes,no}
+@data
+gopu,yes
+babu,yes
+baby,yes
+gopal,no
+krishna,yes
+jai,no
+dev,no
+malini,yes
+hema,yes
+anu,yes
+output:
+ 
+5.
+input:
+@relation ScatterPlotData
+@attribute Number_of_Phones_Sold numeric
+@attribute Money numeric
+@Data
+4, 12
+1, 5
+5, 13
+7, 19
+10, 31
+2, 7
+50, 153
+25, 72
+90, 275
+36, 110
+output:
+ 
+ 
+
+
+
+
+
+6.
+input:
+@relation exp1
+@attribute bread{true,false}
+@attribute cheese{true,false}
+@attribute egg{true,false}
+@attribute juice{true,false}
+@attribute milk{true,false}
+@attribute yogurt{true,false}
+@data
+true,true,true,true,false,false
+true,true,false,true,false,false
+true,false,false,false,true,true
+true,false,false,true,true,false
+false,true,false,true,true,false
+output:
+ 
+7.
+input:
+output:
+ 
+
+ 
+ 
+8.
+code:
+library(dplyr)
+library(tibble)
+library(ggplot2)
+data <- c(55, 60, 71, 63, 55, 65, 50, 55,58,59,61,63,65,67,71,72,75)
+equi_depth <- quantile(data, probs = c(0, 1/3, 2/3, 1))
+equi_depth_partitioned <- cut(data, breaks = equi_depth, labels = c("Low", "Medium", "High"),
+                              include.lowest = TRUE)
+min_value <- min(data)
+max_value <- max(data)
+width <- (max_value - min_value)/3
+equal_width <- seq(min_value, max_value, by = width)
+equal_width_partitioned <- cut(data, breaks = equal_width, labels = c("Low", "Medium", "High"),
+                               include.lowest = TRUE)
+kmeans_model <- kmeans(data, centers = 3)
+cluster_assignments <- as.factor(kmeans_model$cluster)
+levels(cluster_assignments) <- c("Low", "Medium", "High")
+data_tibble <- tibble(data = data, equi_depth_partitioned = equi_depth_partitioned,
+                      equal_width_partitioned = equal_width_partitioned, cluster_assignments = cluster_assignments)
+ggplot(data_tibble, aes(x = data)) +
+  geom_histogram(binwidth = 5) +
+  facet_wrap(~equi_depth_partitioned, ncol = 1, scales = "free_x") +
+  ggtitle("Histogram using Equi-Depth Partitioning")
+ggplot(data_tibble, aes(x = data)) +
+  geom_histogram(binwidth = 5) +
+  facet_wrap(~equal_width_partitioned, ncol = 1, scales = "free_x") +
+  ggtitle("Histogram using Equal-Width Partitioning")
+ggplot(data_tibble, aes(x = data)) +
+  geom_histogram(binwidth = 5) +
+  facet_wrap(~cluster_assignments, ncol = 1, scales = "free_x") +l
+output:
+ 
+9.
+input:
+@relation exp1
+@attribute SONY{true,false}
+@attribute BPL{true,false}
+@attribute LG{true,false}
+@attribute SAMSUNG{true,false}
+@attribute ONIDA{true,false}
+@data
+true,true,true,false,false
+false,true,false,true,false
+false,true,false,false,true
+true,true,false,true,false
+true,false,false,false,true
+false,true,false,false,true
+true,false,false,false,true
+true,true,true,false,true
+true,true,false,false,true
+output:
+ 
+ 
+10.
+input:
+speed<-c(78,81,82,74,83,82,77,80,70)
+time<-c(39,37,36,42,35,36,40,38,46)
+a<-var(speed)
+b<-var(time)
+ss<-sqrt(var(speed))
+st<-sqrt(var(time))
+a
+b
+ss
+st
+output:
+ 
+11.
+input:
+a<-c(100,70,60,90,90)
+min=0
+max=1
+v<-((a-min(a)/max(a)-min(a))*max+min)/100
+summary(v,method=c("range"))
+v
+#zscore
+w=mean(a)
+s=sd(a)
+z=(a-w)/s
+summary(z)
+z
+output:
+ 
+12.
+input:
+@relation CarData
+
+@attribute AvgSpeed numeric
+@attribute TotalTime numeric
+
+@Data
+78, 39
+81, 37
+82, 36
+74, 42
+83, 35
+82, 36
+77, 40
+80, 38
+70, 46
+output:
+ 
+13.
+input:
+@relation TransactionData
+
+@attribute TID string
+@attribute Items string
+
+@Data
+'T100', '{M, O, N, K, E, Y}'
+'T200', '{D, O, N, K, E, Y}'
+'T300', '{M, A, K, E}'
+'T400', '{M, U, C, K, Y}'
+'T500', '{C, O, O, K, I, E}'
+output:
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
